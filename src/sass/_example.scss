@@ -25,3 +25,19 @@
 //   background-size: cover;
 //   background-position: center;
 // }
+.search-form{
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 24px;
+}
+.button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.is-hidden{
+  // display: none;
+  visibility: hidden;
+}

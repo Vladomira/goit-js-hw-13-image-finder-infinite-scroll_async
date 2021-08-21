@@ -14,13 +14,14 @@ export default class FetchAPI{
     const url = `${BASE_URL}?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`
     
     return fetch(url)
-    .then( r => r.json())
-    .then(data =>{
-        console.log(data)
-        this.nextPage();       
-        
-        return data; 
-    })
+    .then( response => response.json())
+    .then(({hits}) =>{
+        // console.log(data)
+        this.nextPage();  
+            
+        return hits; 
+    })  
+   
     }
     nextPage(){
         this.page += 1;

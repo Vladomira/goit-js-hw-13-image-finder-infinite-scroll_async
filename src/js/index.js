@@ -25,12 +25,18 @@ refs.loadMore.addEventListener('click', onLoadMore);
 function onSearch(e){
     e.preventDefault();
 
+   
     fetchAPI.query = e.currentTarget.elements.query.value.trim();
-    fetchAPI.resetPage();
-    fetchAPI.fetchGallery().then(appendGalleryMarkup);
     
+    if(fetchAPI.query === ''){
+        return alert('Please, type what do you want')
+    }
+    fetchAPI.resetPage();    
+    fetchAPI.fetchGallery().then(hits => {
+        clearGalleryContainer();
+        appendGalleryMarkup(hits)});
+     refs.loadMore.classList.remove("is-hidden")
 }
-
 
 function onLoadMore(){    
     fetchAPI.fetchGallery().then(appendGalleryMarkup);
@@ -39,12 +45,17 @@ function onLoadMore(){
 
 // mark
 function appendGalleryMarkup(hits){
-    // refs.galleryContainer.insertAdjacentElement('beforeend',  imagesCard(hits))
-    refs.galleryContainer.innerHTML = imagesCard(hits);
+    refs.galleryContainer.insertAdjacentHTML('beforeend',  imagesCard(hits))
+    
 }
 
+
+function clearGalleryContainer(){
+    refs.galleryContainer.innerHTML =  '';
+}
 // load more
-// const element = document.getElementById('load-more-btn');
+refs.loadMore.classList.add('is-hidden')
+console.log(refs.loadMore)
 refs.loadMore.scrollIntoView({
   behavior: 'smooth',
   block: 'end',

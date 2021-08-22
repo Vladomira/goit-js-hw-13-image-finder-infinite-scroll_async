@@ -1,13 +1,21 @@
-<form class="search-form" id="search-form">
-  <input
-    type="text"
-    name="query"
-    autocomplete="off"
-    placeholder="Search images..."
-  />
-</form>
+<div class="container">
+  <form class="search-form" id="search-form">
+    <input
+      class="input"
+      type="text"
+      name="query"
+      autocomplete="off"
+      placeholder="Search images..."
+    />
+  </form>
+  
+  <ul class="gallery">
+    <!-- Список <li> с карточками изображений -->
+  </ul>
+  <button type="submit" id='load-more-btn' data-action="load-more" class='button'> 
+    <span class='wait'>Load more</span> 
+   
+  </button>
+</div>
 
-<ul class="gallery">
-  <!-- Список <li> с карточками изображений -->
-</ul>
-<button type="submit" id='load-more-btn' class='button'>Load more</button>
+

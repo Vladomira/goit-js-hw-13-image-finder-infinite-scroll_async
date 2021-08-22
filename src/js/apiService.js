@@ -16,7 +16,6 @@ export default class FetchAPI{
     return fetch(url)
     .then( response => response.json())
     .then(({hits}) =>{
-        // console.log(data)
         this.nextPage();  
             
         return hits; 

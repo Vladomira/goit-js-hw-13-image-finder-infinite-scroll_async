@@ -38,14 +38,14 @@ function onSearch(e){
         return error ({    
             text: 'Please, type what do you want',
             styling: 'brighttheme',
-            });
-    }
+            });            
+    }        
+
     fetchAPI.resetPage(); 
-    btnCondition.show()
-
-    fetchImages();       
+    btnCondition.show()   
+    fetchImages();    
+    clearGalleryContainer();
 }
-
 
 function fetchImages(){
     btnCondition.disable()

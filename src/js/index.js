@@ -12,28 +12,22 @@ defaults.maxTextHeight = null;
 import FetchAPI from './apiService';
 import getRefs from './refs';
 import imagesCard from '../templates/template.hbs';
-import BtnCondition from './load_more_btn';
-import makeImgLarger from './larger_img'
+import makeImgLarger from './larger_img';
 
 
 const fetchAPI = new FetchAPI();
 const refs = getRefs();
 
 
-refs.form.addEventListener('submit', onSearch);
-refs.loadMore.addEventListener('click', fetchImages);
-refs.galleryContainer.addEventListener('click', makeImgLarger)
-
-const btnCondition = new BtnCondition({
-    selector: 'refs.loadMore',
-    hidden: true,
-});
-
+// refs.form.addEventListener('submit', onSearch);
+refs.galleryContainer.addEventListener('click', makeImgLarger);
+refs.searchBtn.addEventListener('click', onSearch);
 
 function onSearch(e){
     e.preventDefault();
-    fetchAPI.query = e.currentTarget.elements.query.value.trim();
-   
+    // fetchAPI.query = e.currentTarget.elements.query.value.trim();
+    fetchAPI.query = refs.input.value.trim()
+
     if(fetchAPI.query === ''){
         return error ({    
             text: 'Please, type what do you want',
@@ -42,19 +36,31 @@ function onSearch(e){
     }        
 
     fetchAPI.resetPage(); 
-    btnCondition.show()   
-    fetchImages();    
     clearGalleryContainer();
-}
-
-function fetchImages(){
-    btnCondition.disable()
     fetchAPI.fetchGallery().then(hits => {
         appendGalleryMarkup(hits)
-        btnCondition.enable()
-        scrollImg()
+    fetchAPI.nextPage()
+    });   
+   
+}
+
+const onEntry = entries =>{
+    entries.forEach(entry => {
+        // console.log(" fetchAPI.query =>",   fetchAPI.query)
+        if(entry.isIntersecting && fetchAPI.query !== ''){
+            fetchAPI.fetchGallery().then(hits => {
+            appendGalleryMarkup(hits)
+        });    
+        }
     });
 }
+
+const options = {
+    rootMargin: '200px',
+}
+const observer = new IntersectionObserver(onEntry, options);
+observer.observe(refs.sentry);
+
 
 // mark
 function appendGalleryMarkup(hits){
@@ -65,10 +71,4 @@ function clearGalleryContainer(){
     refs.galleryContainer.innerHTML =  '';
 }
 
-function scrollImg(){    
-refs.loadMore.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
-}
 

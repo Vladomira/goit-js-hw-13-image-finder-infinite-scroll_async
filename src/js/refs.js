@@ -2,8 +2,10 @@ export default function getRefs(){
     return {    
     galleryContainer: document.querySelector('.gallery'),    
     form: document.querySelector('.search-form'),
-    loadMore: document.getElementById('load-more-btn'),
-    wait: document.querySelector('.wait'),
-    largeImg: document.querySelector('.photo-card__img')
+    largeImg: document.querySelector('.photo-card__img'),
+    input: document.querySelector('.input'),
+    
+    sentry: document.querySelector('#sentry'),
+    searchBtn: document.querySelector('.search-btn'),
     }
 }

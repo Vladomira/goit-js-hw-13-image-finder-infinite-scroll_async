@@ -46,16 +46,8 @@ body{
 }
 
 .search-form{
-  display: flex;
-  justify-content: center;
   padding: 8px;
   margin-bottom: 24px;
-}
-.button{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
 }
 .is-hidden{
   // display: none;
@@ -64,19 +56,45 @@ body{
 
 
 
-.input{
-  width: 150px;
+.input {
+  display: flex;
+  padding: 6px;
+  margin: auto;
+  margin-right: auto;
+
+  width: 152px;
   border-radius: 4px;
-  border-color: rgb(85, 24, 114);
+  border-color: #cc7667;
   background-color: #D4A299;
   color: rgb(65, 9, 43);
+
+  font-size: 18px;
+  line-height: 1.19;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1)
 }
 input:focus {
-  box-shadow: 1px px 2px 0 rgb(170, 14, 218);
-  border:1px solid rgb(234, 0, 255)
+   border: 2px solid rgb(65, 9, 43);
+   outline: none;
 }
 
+.search-btn{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;  
+  margin-top: 10px;
 
+  border-radius: 4px;
+  border-color: rgb(65, 9, 43);
+  background-color: rgb(65, 9, 43); 
+  color: #ce8c80;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover{
+    transform: scale(1.1);  
+    box-shadow:  2px 1px rgb(26, 13, 20);  
+}
+}
 .photo-card__img{
   border-radius: 2px;
   height: 180px;
@@ -119,23 +137,6 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // color: #a83b56;
   color: rgb(82, 13, 55); 
   
-}
-
-.button{
-  background-color:#D4A299;
-  border-color: rgb(65, 9, 43);
-  border-radius: 4px;
-  color: rgb(65, 9, 43);
-  transition:  transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 16px;
-  line-height: 1.19
-}
-
-.button:focus,
-.button:hover{
-  transform: scale(1.1);
-  box-shadow: 1px px 2px 0 rgb(170, 14, 218)
 }

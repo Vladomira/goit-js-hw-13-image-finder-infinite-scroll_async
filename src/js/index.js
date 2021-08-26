@@ -34,12 +34,12 @@ function onSearch(e){
             styling: 'brighttheme',
             });            
     }        
-
+  
     fetchAPI.resetPage(); 
     clearGalleryContainer();
     fetchAPI.fetchGallery().then(hits => {
         appendGalleryMarkup(hits)
-    fetchAPI.nextPage()
+    fetchAPI.nextPage()   
     });   
    
 }

@@ -38,6 +38,12 @@ function onSearch(e){
     fetchAPI.resetPage(); 
     clearGalleryContainer();
     fetchAPI.fetchGallery().then(hits => {
+        if(hits.length < 1){
+            return error ({    
+                text: 'Please, type correct word',
+                styling: '',
+                });
+        }
         appendGalleryMarkup(hits)
     fetchAPI.nextPage()   
     });   
